@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1FFB7BEC1E5B7B64004F56D8 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FFB7BEB1E5B7B64004F56D8 /* main.c */; };
+		1FFB7BFA1E5B7BAB004F56D8 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFB7BF41E5B7BAB004F56D8 /* libportaudio.a */; };
+		1FFB7BFF1E5B7C14004F56D8 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFB7BFE1E5B7C14004F56D8 /* CoreAudio.framework */; };
+		1FFB7C011E5B7C25004F56D8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFB7C001E5B7C25004F56D8 /* AudioToolbox.framework */; };
+		1FFB7C031E5B7C30004F56D8 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFB7C021E5B7C30004F56D8 /* AudioUnit.framework */; };
+		1FFB7C051E5B7C3D004F56D8 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFB7C041E5B7C3D004F56D8 /* CoreServices.framework */; };
+		1FFB7C071E5B7C46004F56D8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFB7C061E5B7C46004F56D8 /* Carbon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +31,13 @@
 /* Begin PBXFileReference section */
 		1FFB7BE81E5B7B64004F56D8 /* Speech */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Speech; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFB7BEB1E5B7B64004F56D8 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		1FFB7BF41E5B7BAB004F56D8 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libportaudio.a; sourceTree = "<group>"; };
+		1FFB7BFE1E5B7C14004F56D8 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		1FFB7C001E5B7C25004F56D8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1FFB7C021E5B7C30004F56D8 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		1FFB7C041E5B7C3D004F56D8 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		1FFB7C061E5B7C46004F56D8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		1FFB7C081E5B7D29004F56D8 /* portaudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = portaudio.h; path = ../../portaudio/include/portaudio.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +45,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FFB7C071E5B7C46004F56D8 /* Carbon.framework in Frameworks */,
+				1FFB7C051E5B7C3D004F56D8 /* CoreServices.framework in Frameworks */,
+				1FFB7C031E5B7C30004F56D8 /* AudioUnit.framework in Frameworks */,
+				1FFB7C011E5B7C25004F56D8 /* AudioToolbox.framework in Frameworks */,
+				1FFB7BFF1E5B7C14004F56D8 /* CoreAudio.framework in Frameworks */,
+				1FFB7BFA1E5B7BAB004F56D8 /* libportaudio.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +62,7 @@
 			children = (
 				1FFB7BEA1E5B7B64004F56D8 /* Speech */,
 				1FFB7BE91E5B7B64004F56D8 /* Products */,
+				1FFB7BFD1E5B7C14004F56D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +77,23 @@
 		1FFB7BEA1E5B7B64004F56D8 /* Speech */ = {
 			isa = PBXGroup;
 			children = (
+				1FFB7C081E5B7D29004F56D8 /* portaudio.h */,
+				1FFB7BF41E5B7BAB004F56D8 /* libportaudio.a */,
 				1FFB7BEB1E5B7B64004F56D8 /* main.c */,
 			);
 			path = Speech;
+			sourceTree = "<group>";
+		};
+		1FFB7BFD1E5B7C14004F56D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1FFB7C061E5B7C46004F56D8 /* Carbon.framework */,
+				1FFB7C041E5B7C3D004F56D8 /* CoreServices.framework */,
+				1FFB7C021E5B7C30004F56D8 /* AudioUnit.framework */,
+				1FFB7C001E5B7C25004F56D8 /* AudioToolbox.framework */,
+				1FFB7BFE1E5B7C14004F56D8 /* CoreAudio.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +250,10 @@
 		1FFB7BF01E5B7B64004F56D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Speech",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -223,6 +261,10 @@
 		1FFB7BF11E5B7B64004F56D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Speech",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
