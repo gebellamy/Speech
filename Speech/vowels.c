@@ -8,9 +8,10 @@
 
 #include <stdio.h>
 #include "vowels.h"
+#include "utils.h"
 
-FREQUENCY_ARRAY getVowelFrequencies(char token) {
-    FREQUENCY_ARRAY arr;
+struct FREQUENCY_ARRAY getVowelFrequencies(char token) {
+    struct FREQUENCY_ARRAY arr;
     switch(token) {
         case 'a': // cat
             arr.freq[0] = 800;
@@ -62,6 +63,11 @@ FREQUENCY_ARRAY getVowelFrequencies(char token) {
             arr.freq[0] = 320;
             arr.freq[1] = 920;
             arr.freq[2] = 2200;
+            break;
+        case 'y': // boat, I needed a symbol, okay?
+            arr.freq[0] = 400;
+            arr.freq[1] = 800;
+            arr.freq[2] = 2600;
             break;
         default: // Let's default to silence
             arr.freq[0] = 0;

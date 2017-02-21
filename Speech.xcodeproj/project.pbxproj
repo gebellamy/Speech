@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F428E971E5CAEA20003BF2F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F428E961E5CAEA20003BF2F /* main.c */; };
 		1F428E9A1E5CB3800003BF2F /* vowels.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F428E991E5CB3800003BF2F /* vowels.c */; };
+		1F428E9D1E5CF02E0003BF2F /* consonants.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F428E9B1E5CF02E0003BF2F /* consonants.c */; };
 		1FFB7BFA1E5B7BAB004F56D8 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFB7BF41E5B7BAB004F56D8 /* libportaudio.a */; };
 		1FFB7BFF1E5B7C14004F56D8 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFB7BFE1E5B7C14004F56D8 /* CoreAudio.framework */; };
 		1FFB7C011E5B7C25004F56D8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFB7C001E5B7C25004F56D8 /* AudioToolbox.framework */; };
@@ -37,6 +38,9 @@
 		1F428E961E5CAEA20003BF2F /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		1F428E981E5CAF1C0003BF2F /* vowels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vowels.h; sourceTree = "<group>"; };
 		1F428E991E5CB3800003BF2F /* vowels.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vowels.c; sourceTree = "<group>"; };
+		1F428E9B1E5CF02E0003BF2F /* consonants.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = consonants.c; sourceTree = "<group>"; };
+		1F428E9C1E5CF02E0003BF2F /* consonants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = consonants.h; sourceTree = "<group>"; };
+		1F428E9E1E5CF1300003BF2F /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		1FFB7BE81E5B7B64004F56D8 /* Speech */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Speech; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFB7BF41E5B7BAB004F56D8 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = Speech/libportaudio.a; sourceTree = "<group>"; };
 		1FFB7BFE1E5B7C14004F56D8 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -95,8 +99,11 @@
 			isa = PBXGroup;
 			children = (
 				1F428E961E5CAEA20003BF2F /* main.c */,
+				1F428E9E1E5CF1300003BF2F /* utils.h */,
 				1F428E981E5CAF1C0003BF2F /* vowels.h */,
 				1F428E991E5CB3800003BF2F /* vowels.c */,
+				1F428E9C1E5CF02E0003BF2F /* consonants.h */,
+				1F428E9B1E5CF02E0003BF2F /* consonants.c */,
 			);
 			path = Speech;
 			sourceTree = "<group>";
@@ -182,6 +189,7 @@
 				1FFB7C131E5B84A8004F56D8 /* libportaudio.exp in Sources */,
 				1F428E9A1E5CB3800003BF2F /* vowels.c in Sources */,
 				1F428E971E5CAEA20003BF2F /* main.c in Sources */,
+				1F428E9D1E5CF02E0003BF2F /* consonants.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
