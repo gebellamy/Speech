@@ -9,9 +9,11 @@
 #include <stdio.h>
 #include <math.h>
 #include "../../portaudio/include/portaudio.h"
+#include "vowels.h"
+
 
 #define SAMPLE_RATE (22050) // Speech contains no relevant frequencies any higher
-#define PI (3.141592653)
+#define PI (3.141592654)
 #define F1 (530)
 #define F2 (1850)
 #define F3 (2500)
@@ -24,6 +26,7 @@ void logPaError(PaError err) {
 typedef struct
 {
     float pitch;
+    char vowel;
 } paTestData;
 
 static int playSound( const void *inputBuffer, void *outputBuffer,
@@ -38,20 +41,18 @@ static int playSound( const void *inputBuffer, void *outputBuffer,
     unsigned int i;
     (void) inputBuffer; /* Prevent unused variable warning. */
     float v;
-//    int freq = F1;
     data->pitch = 1;
     
+    FREQUENCY_ARRAY frequencies = getVowelFrequencies(data->vowel);
     for(i=0; i<framesPerBuffer; i++)
     {
-        v = sin(i * F1 * 2 * PI / SAMPLE_RATE);
-        v += sin(i * F2 * 2 * PI / SAMPLE_RATE);
-        v += sin(i * F3 * 2 * PI / SAMPLE_RATE);
+        v = sin(i * frequencies.freq[0] * 2 * PI / SAMPLE_RATE);
+        v += sin(i * frequencies.freq[1] * 2 * PI / SAMPLE_RATE);
+        v += sin(i * frequencies.freq[2] * 2 * PI / SAMPLE_RATE);
         
         *out++ = v;
         
-        *out *= .3;
-        
-        data->pitch += 1;
+        *out *= .33;
     }
     return 0;
 }
@@ -93,8 +94,57 @@ int main(int argc, const char * argv[]) {
         return 1;
     }
     
-    /* Have the sound play for a second */
-    Pa_Sleep(1000);
+    /* Have the sounds play for a second */
+    data.vowel = 'a';
+    Pa_Sleep(500);
+    data.vowel = 'c';
+    Pa_Sleep(100);
+
+    data.vowel = 'A';
+    Pa_Sleep(500);
+    data.vowel = 'c';
+    Pa_Sleep(100);
+    
+    data.vowel = 'e';
+    Pa_Sleep(500);
+    data.vowel = 'c';
+    Pa_Sleep(100);
+    
+    data.vowel = 'E';
+    Pa_Sleep(500);
+    data.vowel = 'c';
+    Pa_Sleep(100);
+    
+    data.vowel = 'i';
+    Pa_Sleep(500);
+    data.vowel = 'c';
+    Pa_Sleep(100);
+    
+    data.vowel = 'I';
+    Pa_Sleep(500);
+    data.vowel = 'c';
+    Pa_Sleep(100);
+    
+    data.vowel = 'o';
+    Pa_Sleep(500);
+    data.vowel = 'c';
+    Pa_Sleep(100);
+    
+    data.vowel = 'O';
+    Pa_Sleep(500);
+    data.vowel = 'c';
+    Pa_Sleep(100);
+    
+    data.vowel = 'u';
+    Pa_Sleep(500);
+    data.vowel = 'c';
+    Pa_Sleep(100);
+    
+    data.vowel = 'U';
+    Pa_Sleep(500);
+    data.vowel = 'c';
+    Pa_Sleep(100);
+    
     
     /* Stop the audio stream */
     err = Pa_StopStream(stream);
