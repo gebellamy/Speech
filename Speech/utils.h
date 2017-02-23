@@ -9,8 +9,13 @@
 #ifndef utils_h
 #define utils_h
 
-struct FREQUENCY_ARRAY {
+#define SAMPLE_RATE (22050) // Speech contains no relevant frequencies any higher
+#define PI (3.141592654)
+
+struct FREQUENCY_DATA {
     int freq[3];
+    int isVowel;
+    int fricationNoise;
 };
 
 #endif /* utils_h */

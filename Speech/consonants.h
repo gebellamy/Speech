@@ -9,6 +9,8 @@
 #ifndef consonants_h
 #define consonants_h
 
-struct FREQUENCY_ARRAY getConsonantFrequencies(char token);
+struct FREQUENCY_DATA getConsonantFrequencies(char token);
+
+float getFricationNoise(int f);
 
 #endif /* consonants_h */

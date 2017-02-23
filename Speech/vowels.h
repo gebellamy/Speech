@@ -9,6 +9,6 @@
 #ifndef vowels_h
 #define vowels_h
 
-struct FREQUENCY_ARRAY getVowelFrequencies(char token);
+struct FREQUENCY_DATA getVowelFrequencies(char token);
 
 #endif /* vowels_h */

@@ -10,8 +10,8 @@
 #include "vowels.h"
 #include "utils.h"
 
-struct FREQUENCY_ARRAY getVowelFrequencies(char token) {
-    struct FREQUENCY_ARRAY arr;
+struct FREQUENCY_DATA getVowelFrequencies(char token) {
+    struct FREQUENCY_DATA arr;
     switch(token) {
         case 'a': // cat
             arr.freq[0] = 800;
@@ -19,9 +19,9 @@ struct FREQUENCY_ARRAY getVowelFrequencies(char token) {
             arr.freq[2] = 2500;
             break;
         case 'A': {// father
-            arr.freq[0] = 740;
-            arr.freq[1] = 1180;
-            arr.freq[2] = 2640;
+            arr.freq[0] = 710;
+            arr.freq[1] = 1100;
+            arr.freq[2] = 2450;
             break;
         }
         case 'e': //bet
@@ -74,6 +74,7 @@ struct FREQUENCY_ARRAY getVowelFrequencies(char token) {
             arr.freq[1] = 0;
             arr.freq[2] = 0;
     }
+    arr.isVowel = 1;
     
     return arr;
 }

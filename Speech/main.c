@@ -14,9 +14,6 @@
 #include "utils.h"
 
 
-#define SAMPLE_RATE (22050) // Speech contains no relevant frequencies any higher
-#define PI (3.141592654)
-
 void logPaError(PaError err) {
     printf("PortAudio error: %s\n", Pa_GetErrorText(err));
     return;
@@ -24,9 +21,14 @@ void logPaError(PaError err) {
 
 typedef struct
 {
-    float pitch;
+    /* A single-character token representing a single phoneme */
     char token;
-    int isVowel;
+    /* 1 if phoneme is a vowel, otherwise 0 */
+    short isVowel;
+    /* The voice onset time of a consonant */
+    int vot;
+    /* 1 if noise is needed, otherwise 0 */
+    int fricationNoise;
 } paTestData;
 
 static int playSound( const void *inputBuffer, void *outputBuffer,
@@ -41,9 +43,11 @@ static int playSound( const void *inputBuffer, void *outputBuffer,
     unsigned int i;
     (void) inputBuffer; /* Prevent unused variable warning. */
     float v;
-    data->pitch = 1;
-    struct FREQUENCY_ARRAY frequencies = {};
+    struct FREQUENCY_DATA frequencies = {};
     
+    // TODO: Quit setting anything but the token, figure out a way to
+    // get whether or not it's a vowel from tokenizer that doesn't exist
+    // yet.
     if (data->isVowel) {
         frequencies = getVowelFrequencies(data->token);
     } else {
@@ -52,14 +56,118 @@ static int playSound( const void *inputBuffer, void *outputBuffer,
     for(i=0; i<framesPerBuffer; i++)
     {
         v = sin(i * frequencies.freq[0] * 2 * PI / SAMPLE_RATE);
-        v += sin(i * frequencies.freq[1] * 2 * PI / SAMPLE_RATE);
-        v += sin(i * frequencies.freq[2] * 2 * PI / SAMPLE_RATE);
+        v += sin(i * frequencies.freq[1] * 2 * PI / SAMPLE_RATE) * 0.45f;
+        v += sin(i * frequencies.freq[2] * 2 * PI / SAMPLE_RATE) * 0.05f;
+        
+        if (data->fricationNoise) {
+            v += getFricationNoise(i);
+        }
+        
+//        v *= 0.5f;
         
         *out++ = v;
-        
-        *out *= .33;
     }
     return 0;
+}
+
+void consonantTest(void *userData) {
+    paTestData *data = (paTestData*)userData;
+    
+    /* Test a couple consonant sounds with the 'ah' vowel */
+    data->token = 'l';
+    data->isVowel = 0;
+    Pa_Sleep(60);
+    data->token = 'A';
+    data->isVowel = 1;
+    Pa_Sleep(300);
+    data->token = 'l';
+    data->isVowel = 0;
+    Pa_Sleep(60);
+    data->token = 'A';
+    data->isVowel = 1;
+    Pa_Sleep(300);
+    data->token = ' ';
+    Pa_Sleep(500);
+    
+    data->token = 's';
+    data->isVowel = 0;
+    data->fricationNoise = 1;
+    Pa_Sleep(70);
+    data->token = 'O';
+    data->isVowel = 1;
+    data->fricationNoise = 0;
+    Pa_Sleep(300);
+}
+
+void vowelTest(void *userData) {
+    paTestData *data = (paTestData*)userData;
+    
+    /* Have the sounds play for a second */
+    data->token = 'a';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
+    
+    data->token = 'A';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
+    
+    data->token = 'e';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
+    
+    data->token = 'E';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
+    
+    data->token = 'i';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
+    
+    data->token = 'I';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
+    
+    data->token = 'o';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
+    
+    data->token = 'O';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
+    
+    data->token = 'u';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
+    
+    data->token = 'U';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
+    
+    data->token = 'y';
+    data->isVowel = 1;
+    Pa_Sleep(500);
+    data->token = ' ';
+    Pa_Sleep(100);
 }
 
 int main(int argc, const char * argv[]) {
@@ -98,16 +206,9 @@ int main(int argc, const char * argv[]) {
         logPaError(err);
         return 1;
     }
-    
-    /* Have the sounds play for a second */
-    data.token = 'p';
-    data.isVowel = 0;
-    Pa_Sleep(45);
-    data.token = ' ';
-    Pa_Sleep(15);
-    data.token = 'A';
-    data.isVowel = 1;
-    Pa_Sleep(100);
+
+//    vowelTest(&data);
+    consonantTest(&data);
     
     /* Stop the audio stream */
     err = Pa_StopStream(stream);
